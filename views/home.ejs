@@ -15,8 +15,19 @@
           $('#div-sign-in').remove();
         });
 
+        $('#ul-list-room li').click(function(){
+          $('#ul-list-room li').removeClass('active-room');
+          console.log($(this).html());
+          $(this).addClass('active-room');
+        });
+
       });
     </script>
+    <style>
+      .active-room {
+        color: red
+      }
+    </style>
   </head>
   <body>
     <h1>KhoaPham Training</h1>
