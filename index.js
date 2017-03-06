@@ -12,6 +12,10 @@ app.get('/', (req, res) => res.render('home'));
 
 io.on('connection', socket => {
   socket.on('CLIENT_SIGN_UP', username => {
-    console.log('New user: ' +  username);
+    socket.username = username;
+  });
+
+  socket.on('CLIENT_JOIN_ROOM', roomName => {
+    
   });
 });

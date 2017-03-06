@@ -17,8 +17,8 @@
 
         $('#ul-list-room li').click(function(){
           $('#ul-list-room li').removeClass('active-room');
-          console.log($(this).html());
           $(this).addClass('active-room');
+          socket.emit('CLIENT_JOIN_ROOM', $(this).html());
         });
 
       });
