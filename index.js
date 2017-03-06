@@ -16,7 +16,9 @@ io.on('connection', socket => {
   });
 
   socket.on('CLIENT_JOIN_ROOM', roomName => {
+    socket.leave(socket.room);
     socket.join(roomName, () => {
+      socket.room = roomName;
       console.log(`${socket.username} da join vao ${roomName}`);
     });
   });
