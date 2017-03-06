@@ -8,6 +8,13 @@
     <script type="text/javascript">
       $(document).ready(() => {
         let socket = io.connect();
+
+        $('#btn-sign-up').click(() => {
+          let username = $('#txt-username').val();
+          socket.emit('CLIENT_SIGN_UP', username);
+          $('#div-sign-in').remove();
+        });
+
       });
     </script>
   </head>
