@@ -6,6 +6,7 @@
     <script src="jquery-3.1.1.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
+      let activeRoom;
       $(document).ready(() => {
         let socket = io.connect();
 
@@ -18,7 +19,13 @@
         $('#ul-list-room li').click(function(){
           $('#ul-list-room li').removeClass('active-room');
           $(this).addClass('active-room');
-          socket.emit('CLIENT_JOIN_ROOM', $(this).html());
+          activeRoom = $(this).html()
+          socket.emit('CLIENT_JOIN_ROOM', activeRoom);
+        });
+
+        $('#btn-send').click(() => {
+          let message = $('#txt-msg').val();
+          socket.emit('CLIENT_SEND_MESSAGE', { message, room: activeRoom})
         });
 
       });

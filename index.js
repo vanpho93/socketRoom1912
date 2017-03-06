@@ -16,6 +16,13 @@ io.on('connection', socket => {
   });
 
   socket.on('CLIENT_JOIN_ROOM', roomName => {
-    
+    socket.join(roomName, () => {
+      console.log(`${socket.username} da join vao ${roomName}`);
+    });
+  });
+
+  socket.on('CLIENT_SEND_MESSAGE', data => {
+    let { message, room } = data;
+    io.in(room).emit('NEW_MESSAGE', socket.username + ': ' +message)
   });
 });
