@@ -10,6 +10,10 @@
       $(document).ready(() => {
         let socket = io.connect();
 
+        socket.on('NEW_MESSAGE', message => {
+          $('#ul-message').append(`<li>${message}</li>`);
+        });
+
         $('#btn-sign-up').click(() => {
           let username = $('#txt-username').val();
           socket.emit('CLIENT_SIGN_UP', username);
@@ -54,5 +58,7 @@
       <input type="text" placeholder="Message" id="txt-msg">
       <button id="btn-send">Send</button>
     </div>
+
+    <ul id="ul-message"></ul>
   </body>
 </html>
